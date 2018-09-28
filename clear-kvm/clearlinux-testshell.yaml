@@ -13,8 +13,17 @@ metadata:
       - lava-test-shell
 run:
   steps:
-    - ls -al
-    - swupd --help
+    - ls -al /lava-*/bin/
+    - mkdir -p /etc/profile.d
+    - touch /etc/profile.d/proxy.sh
+    - chmod +x /etc/profile.d/proxy.sh
+    - source /lava-*/bin/lava-proxy
+    - swupd bundle-add --skip-diskspace-check desktop-apps-extras
+    - swupd bundle-add --skip-diskspace-check desktop-autostart
+    - vncserver
+    - virtualenv venv
+    - source venv/bin/activate
+    - pip3 install requests ansible docker
 parse:
     pattern: "(?P<test_case_id>.*)\\s+(?P<result>PASS|FAIL|ERROR)\\s+"
     fixupdict:
