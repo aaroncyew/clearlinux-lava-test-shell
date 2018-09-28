@@ -20,7 +20,7 @@ run:
     - source /lava-*/bin/lava-proxy
     - swupd bundle-add --skip-diskspace-check desktop-apps-extras
     - swupd bundle-add --skip-diskspace-check desktop-autostart
-    - vncserver
+    - vncviewer 0.0.0.0
     - virtualenv venv
     - source venv/bin/activate
     - pip3 install requests ansible docker
