@@ -19,11 +19,13 @@ run:
     - chmod +x /etc/profile.d/proxy.sh
     - source /lava-*/bin/lava-proxy
     - echo "PermitRootLogin yes" >> /etc/ssh/sshd_config && echo 0
+    - ip a
     - swupd bundle-add --skip-diskspace-check desktop-apps-extras
     - swupd bundle-add --skip-diskspace-check desktop-autostart
-    - ip a && echo 0
-    - export DISPLAY=:1
-    - vncviewer 0.0.0.0 && echo 0 
+    - swupd bundle-add --skip-diskspace-check vnc-server
+    - touch $HOME/.Xresources && echo 0
+    - touch $HOME/.Xauthority && echo 0
+    - vncserver && echo 0
     - virtualenv venv && echo 0
     - source venv/bin/activate && echo 0
     - pip3 install requests ansible docker && echo 0
