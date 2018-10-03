@@ -18,6 +18,7 @@ run:
     - touch /etc/profile.d/proxy.sh
     - chmod +x /etc/profile.d/proxy.sh
     - source /lava-*/bin/lava-proxy
+    - echo "PermitRootLogin yes" >> /etc/ssh/sshd_config && echo 0
     - swupd bundle-add --skip-diskspace-check desktop-apps-extras
     - swupd bundle-add --skip-diskspace-check desktop-autostart
     - ip a && echo 0
