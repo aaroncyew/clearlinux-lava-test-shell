@@ -20,10 +20,13 @@ run:
     - source /lava-*/bin/lava-proxy
     - swupd bundle-add --skip-diskspace-check desktop-apps-extras
     - swupd bundle-add --skip-diskspace-check desktop-autostart
-    - vncviewer 0.0.0.0
-    - virtualenv venv
-    - source venv/bin/activate
-    - pip3 install requests ansible docker
+    - ip a && echo 0
+    - export DISPLAY=:1
+    - vncviewer 0.0.0.0 && echo 0 
+    - virtualenv venv && echo 0
+    - source venv/bin/activate && echo 0
+    - pip3 install requests ansible docker && echo 0
+    - reboot
 parse:
     pattern: "(?P<test_case_id>.*)\\s+(?P<result>PASS|FAIL|ERROR)\\s+"
     fixupdict:
