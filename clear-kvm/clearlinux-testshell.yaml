@@ -23,15 +23,12 @@ run:
     - swupd bundle-add --skip-diskspace-check desktop-apps-extras
     - swupd bundle-add --skip-diskspace-check desktop-autostart
     - swupd bundle-add --skip-diskspace-check vnc-server
-    - swupd bundle-add --skip-diskspace-check x11-tools
-    - swupd bundle-add --skip-diskspace-check xfce4-desktop
-    - swupd update
     - touch $HOME/.Xresources && echo 0
     - touch $HOME/.Xauthority && echo 0
     - vncserver && echo 0
     - virtualenv venv && echo 0
     - source venv/bin/activate && echo 0
-    - pip3 install requests ansible docker && echo 0
+    - pip3 install requests && echo 0
     - reboot
 parse:
     pattern: "(?P<test_case_id>.*)\\s+(?P<result>PASS|FAIL|ERROR)\\s+"
